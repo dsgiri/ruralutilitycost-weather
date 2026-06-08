@@ -2,16 +2,14 @@ import { NavLink } from "react-router-dom";
 
 export function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-400 p-6 flex flex-col space-y-4 mt-auto">
+    <footer className="bg-slate-900 text-slate-400 p-6 flex flex-col space-y-4 mt-auto" role="contentinfo">
       <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        <div className="flex flex-wrap items-center justify-center space-x-4 md:space-x-6 text-xs uppercase font-bold tracking-widest">
-          <NavLink to="/about" className="hover:text-white">About</NavLink>
-          <NavLink to="/contact" className="hover:text-white">Contact</NavLink>
-          <NavLink to="/legal" className="hover:text-white">Legal</NavLink>
-          <NavLink to="/legal" className="hover:text-white">Privacy</NavLink>
-          <NavLink to="/legal" className="hover:text-white">Terms</NavLink>
-          <a href="#" className="hover:text-white">GitHub</a>
-        </div>
+        <nav className="flex flex-wrap items-center justify-center space-x-4 md:space-x-6 text-xs uppercase font-bold tracking-widest" aria-label="Footer Navigation">
+          <NavLink to="/about" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-slate-400 p-1 rounded">About</NavLink>
+          <NavLink to="/contact" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-slate-400 p-1 rounded">Contact</NavLink>
+          <NavLink to="/legal" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-slate-400 p-1 rounded">Legal</NavLink>
+          <a href="/sitemap.xml" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-slate-400 p-1 rounded">Sitemap</a>
+        </nav>
         <div className="text-[10px] text-center md:text-right">
           &copy; {new Date().getFullYear()} Rural Utility Cost. Information for support only. Verify with local instruments.
         </div>

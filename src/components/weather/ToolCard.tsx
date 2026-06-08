@@ -5,6 +5,7 @@ import { Tool } from "../../types";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/Card";
 import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
+import { useGoogleAnalytics } from "../../hooks/useGoogleAnalytics";
 
 interface ToolCardProps {
   key?: React.Key;
@@ -14,8 +15,14 @@ interface ToolCardProps {
 }
 
 export function ToolCard({ tool, isFavorite, onToggleFavorite }: ToolCardProps) {
+  const { trackEvent } = useGoogleAnalytics();
+
+  const handleLaunch = () => {
+    trackEvent("click", "Tool_Launch", tool.title);
+  };
+
   return (
-    <Card className="flex flex-col flex-1 h-full hover:border-[#0369a1] transition-colors">
+    <Card className="flex flex-col flex-1 h-full hover:border-[#0369a1] transition-colors focus-within:ring-2 focus-within:ring-[#0369a1]">
       <CardHeader className="pb-3 flex flex-row items-start justify-between space-y-0">
         <div className="space-y-1.5 flex-1">
           <Badge variant="secondary" className="mb-2">
@@ -25,10 +32,10 @@ export function ToolCard({ tool, isFavorite, onToggleFavorite }: ToolCardProps) 
         </div>
         <button
           onClick={() => onToggleFavorite(tool.id)}
-          className="text-slate-300 hover:text-red-500 transition-colors focus:outline-none ml-2"
+          className="text-slate-300 hover:text-red-500 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 rounded-sm ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center p-2"
           aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
         >
-          <Heart className={`h-6 w-6 ${isFavorite ? "fill-red-500 text-red-500" : ""}`} />
+          <Heart className={`h-6 w-6 ${isFavorite ? "fill-red-500 text-red-500" : ""}`} aria-hidden="true" />
         </button>
       </CardHeader>
       <CardContent className="flex-1">
@@ -36,13 +43,13 @@ export function ToolCard({ tool, isFavorite, onToggleFavorite }: ToolCardProps) 
           {tool.description}
         </CardDescription>
       </CardContent>
-      <CardFooter className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mt-auto">
+      <CardFooter className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mt-auto border-t border-slate-100">
         <span className="text-xs font-bold text-slate-500 flex items-center">
-            <span className="w-2 h-2 rounded-full bg-slate-300 mr-2"></span>
+            <span className="w-2 h-2 rounded-full bg-slate-300 mr-2" aria-hidden="true"></span>
             {tool.primaryOutcome}
         </span>
-        <Link to={tool.path}>
-          <Button variant="default">
+        <Link to={tool.path} onClick={handleLaunch} className="w-full md:w-auto" tabIndex={-1}>
+          <Button variant="default" className="w-full">
             Open Tool
           </Button>
         </Link>

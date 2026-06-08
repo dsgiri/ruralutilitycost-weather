@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { Layout } from "./components/layout/Layout";
 import { Home } from "./pages/Home";
 import { Forecast } from "./pages/Forecast";
@@ -16,10 +17,19 @@ import { Alerts } from "./pages/Alerts";
 import { Favorites } from "./pages/Favorites";
 import { About } from "./pages/About";
 import { Legal } from "./pages/Legal";
+import { NotFound } from "./pages/NotFound";
+import { Contact } from "./pages/Contact";
+import { useGoogleAnalytics } from "./hooks/useGoogleAnalytics";
+
+function AnalyticsTracker() {
+  useGoogleAnalytics();
+  return null;
+}
 
 export default function App() {
   return (
     <BrowserRouter>
+      <AnalyticsTracker />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -32,8 +42,9 @@ export default function App() {
           <Route path="alerts" element={<Alerts />} />
           <Route path="favorites" element={<Favorites />} />
           <Route path="about" element={<About />} />
-          <Route path="contact" element={<About />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="legal" element={<Legal />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

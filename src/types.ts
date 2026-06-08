@@ -39,3 +39,13 @@ export interface GDDRecord {
   dailyGDD: number;
   accumulatedGDD: number;
 }
+
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+    dataLayer?: any[];
+    adsbygoogle?: any[];
+    hasScrolled50?: boolean;
+  }
+}
+
