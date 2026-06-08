@@ -1,0 +1,6 @@
+{
+  "name": "Rural Utility Cost - Weather",
+  "description": "Weather-driven agricultural decision support hub for rural and farm users.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
