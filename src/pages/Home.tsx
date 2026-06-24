@@ -4,14 +4,12 @@ import { useFavorites } from "../hooks/useFavorites";
 import { CloudSun, Sunrise, Leaf, MapPin } from "lucide-react";
 import { Badge } from "../components/ui/Badge";
 import { Card, CardContent } from "../components/ui/Card";
-import { AdContainer } from "../components/ui/AdContainer";
 
 export function Home() {
   const { favorites, toggleFavorite } = useFavorites();
 
   return (
     <div className="space-y-10">
-      <AdContainer slotId="TOP_BANNER" className="md:max-w-[728px] max-h-[90px] min-h-[90px]" />
       <section className="space-y-4">
         {/* Operational Summary Bar styled like the design */}
         <div className="bg-[#0369a1] text-white p-6 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between shadow-lg gap-6">
@@ -95,8 +93,6 @@ export function Home() {
           ))}
         </div>
       </section>
-      
-      <AdContainer slotId="BOTTOM_BANNER" className="md:max-w-[728px] max-h-[90px] min-h-[90px]" />
     </div>
   );
 }

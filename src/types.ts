@@ -44,7 +44,6 @@ declare global {
   interface Window {
     gtag?: (...args: any[]) => void;
     dataLayer?: any[];
-    adsbygoogle?: any[];
     hasScrolled50?: boolean;
   }
 }
